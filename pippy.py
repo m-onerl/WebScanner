@@ -24,7 +24,6 @@ def main():
             working_urls.append(working_url)
 
     with open(output_file, "w", encoding="utf-8") as file:
-        print("Działające linki:")
         for url in working_urls:
             file.write(url + "\n")
 
