@@ -46,5 +46,11 @@ else:
     taskFrequency = count_task_frequency(tasks)
     UsersWithTopCompleted = (user_with_most_completed(taskFrequency))
 
-    print("Wreczamy nagrody dla użytkowników z id:",UsersWithTopCompleted)
-    print(get_keys_with_top_values(taskFrequency))
+
+r = requests.get("https://jsonplaceholder.typicode.com/users")
+
+users = r.json()
+    
+for user in users:
+    if(user["id"] in UsersWithTopCompleted):
+        print("Wreczamy nagrody dla użytkowników z id:", user["name"])
