@@ -61,7 +61,8 @@ for user in users:
 # 2 sposób
 for userId in UsersWithTopCompleted:
     print(userId)
-    r = requests.get("https://jsonplaceholder.typicode.com//users?id=" + str(userId))
+    #r = requests.get("https://jsonplaceholder.typicode.com//users?id=" + str(userId))
+    r = requests.get("https://jsonplaceholder.typicode.com//users?id=", params="id="+str(userId))
     user = r.json()
     for user in user:
         print("Wreczamy nagrody dla użytkowników :", user["name"])
