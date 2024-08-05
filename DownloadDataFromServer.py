@@ -69,15 +69,15 @@ for userId in UsersWithTopCompleted:
 """
 # 3 sposób
 
-def change_list_into(my_list):
-    conj_param = "id="
+def change_list_into(my_list, key):
+    conj_param = key + "="
     for item in my_list:
         conj_param += str(item)
         if item != my_list[-1]:
-            conj_param += "&id="
+            conj_param += "&" + key + "="
     return conj_param
  
-conj_param = change_list_into(UsersWithTopCompleted)
+conj_param = change_list_into(UsersWithTopCompleted, "id")
 
 r = requests.get("https://jsonplaceholder.typicode.com//users?id=", params=conj_param)
 users = r.json()
