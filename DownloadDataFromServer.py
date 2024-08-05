@@ -58,11 +58,28 @@ for user in users:
         print("Wreczamy nagrody dla użytkowników :", user["name"])
 """
 
-# 2 sposób
+"""# 2 sposób
 for userId in UsersWithTopCompleted:
     print(userId)
     #r = requests.get("https://jsonplaceholder.typicode.com//users?id=" + str(userId))
     r = requests.get("https://jsonplaceholder.typicode.com//users?id=", params="id="+str(userId))
     user = r.json()
     for user in user:
-        print("Wreczamy nagrody dla użytkowników :", user["name"])
+        print("Wreczamy nagrody dla użytkowników :", user["name"]) 
+"""
+# 3 sposób
+
+def change_list_into(my_list):
+    conj_param = "id="
+    for item in my_list:
+        conj_param += str(item)
+        if item != my_list[-1]:
+            conj_param += "&id="
+    return conj_param
+ 
+conj_param = change_list_into(UsersWithTopCompleted)
+
+r = requests.get("https://jsonplaceholder.typicode.com//users?id=", params=conj_param)
+users = r.json()
+for user in users:
+    print("Wreczamy nagrody dla użytkowników :", user["name"])
