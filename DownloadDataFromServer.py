@@ -13,14 +13,23 @@ import json
 
 r = requests.get("https://jsonplaceholder.typicode.com/todos")
 
+
+from collections import defaultdict
+
+"""
+a = defaultdict(int)
+
+print(a["lalala"])
+a[4] += 1
+print(a)
+"""
+
+
 def count_task_frequency(tasks):
-    taskFrequency = {}
+    taskFrequency = defaultdict(int)
     for entry in tasks:
         if(entry["completed"] == True):
-            if(entry["userId"] in taskFrequency):
                 taskFrequency[entry["userId"]] += 1
-            else:
-                taskFrequency[entry["userId"]] = 1
     return taskFrequency
 
 def get_keys_with_top_values(my_dict):
@@ -68,7 +77,6 @@ for userId in UsersWithTopCompleted:
         print("Wreczamy nagrody dla użytkowników :", user["name"]) 
 """
 # 3 sposób
-
 def change_list_into(my_list, key):
     conj_param = key + "="
     for item in my_list:
